@@ -28,6 +28,7 @@
 </template>
 
 <script>
+import * as messageBox from 'utils/message-box';
 export default {
   name: 'login',
   data() {
@@ -70,6 +71,7 @@ export default {
         } else {
           // 验证不通过
           console.log('nulllllll');
+          messageBox.error('erroe');
         }
       });
     }

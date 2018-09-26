@@ -16,6 +16,12 @@ export const constantRouterMap = [
     component: blankLayout,
     hidden: true,
     children: [{ path: '/', component: _import('login/index') }]
+  },
+  {
+    path: '/dashboardview',
+    component: blankLayout,
+    hidden: true,
+    children: [{ path: '/', component: _import('login/index') }]
   }
 ];
 export default new Router({
