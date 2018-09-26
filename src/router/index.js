@@ -9,18 +9,12 @@ export const constantRouterMap = [
     path: '/12',
     component: blankLayout,
     hidden: true,
-    meta: {
-      title: '12页面...'
-    },
     children: [{ path: '/', component: _import('test-main/2') }]
   },
   {
-    path: '1',
+    path: '/',
     component: blankLayout,
     hidden: true,
-    meta: {
-      title: '首页'
-    },
     children: [{ path: '/', component: _import('test-main/index') }]
   }
 ];

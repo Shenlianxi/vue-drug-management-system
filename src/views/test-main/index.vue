@@ -7,6 +7,7 @@
     <el-button type="primary">测试element</el-button>
     <i class="el-icon-share"></i>
     <el-input placeholder="hello"></el-input>
+    <icon-svg icon-class="monitoring"></icon-svg>
     <!-- 测试注释 github试试 -->
   </div>
 </template>
