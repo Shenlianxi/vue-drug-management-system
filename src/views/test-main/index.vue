@@ -1,0 +1,28 @@
+<template>
+  <div class="main-test-wrapper">
+    <el-button type="primary">测试element</el-button>
+    <el-button type="success">成功按钮</el-button>
+    <el-button type="success">成功按钮</el-button>
+    <el-button type="success">成功按钮</el-button>
+    <el-button type="primary">测试element</el-button>
+    <i class="el-icon-share"></i>
+    <i class="el-icon-share"></i>
+    <i class="el-icon-share"></i>
+    <i class="el-icon-share"></i>
+    <el-input placeholder="hello"></el-input>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'test'
+};
+</script>
+
+<style lang="scss" scoped>
+.main-test-wrapper {
+  // height: 200px;
+  // width: 200px;
+  // border: 2px solid red;
+}
+</style>
