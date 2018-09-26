@@ -8,17 +8,24 @@ export const constantRouterMap = [
   {
     path: '/12',
     component: blankLayout,
-    hidden: true
-    // children: [{ path: '/', component: _import('test-main/2') }]
+    hidden: true,
+    meta: {
+      title: '12页面...'
+    },
+    children: [{ path: '/', component: _import('test-main/2') }]
   },
   {
-    path: '/1',
+    path: '1',
     component: blankLayout,
     hidden: true,
+    meta: {
+      title: '首页'
+    },
     children: [{ path: '/', component: _import('test-main/index') }]
   }
 ];
 export default new Router({
+  mode: 'history',
   scrollBehavior: () => ({ y: 0 }),
   routes: constantRouterMap
 });

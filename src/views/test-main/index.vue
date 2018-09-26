@@ -6,9 +6,6 @@
     <el-button type="success">成功按钮</el-button>
     <el-button type="primary">测试element</el-button>
     <i class="el-icon-share"></i>
-    <i class="el-icon-share"></i>
-    <i class="el-icon-share"></i>
-    <i class="el-icon-share"></i>
     <el-input placeholder="hello"></el-input>
     <!-- 测试注释 github试试 -->
   </div>
