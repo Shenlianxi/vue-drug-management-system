@@ -2,7 +2,7 @@
   <div class="login-container">
     <el-form autoComplete="on" :model="loginForm" :rules="loginRules" ref="loginForm" label-position="left" label-width="0px"
       class="card-box login-form">
-      <h3 class="login-title">系统登录</h3>
+      <h3 class="login-title">Welcome To DMS</h3>
       <el-form-item prop="userName">
         <el-input class="login-input-el" name="userName" type="text" v-model="loginForm.userName" autoComplete="on" placeholder="用户名" @keyup.enter.native.prevent="handleLogin">
           <icon-svg slot="prefix" icon-class="yonghuming"></icon-svg>
@@ -16,7 +16,8 @@
       <el-form-item prop="validateCode">
         <el-input class="login-input-el" name="validateCode" type="text" v-model="loginForm.validateCode" autoComplete="on"
           placeholder="验证码" @keyup.enter.native.prevent="handleLogin">
-          <icon-svg slot="prefix" icon-class="yanzhengma"></icon-svg></el-input>
+          <icon-svg slot="prefix" icon-class="yanzhengma"></icon-svg>
+          <valicated-code @checkCode="checkCode" slot="suffix" :refreshState="refreshState"></valicated-code></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" style="width:100%;" @click.native.prevent="handleLogin">
@@ -29,6 +30,7 @@
 
 <script>
 import * as messageBox from 'utils/message-box';
+import valicatedCode from 'components/valicated-com/verficated-code';
 export default {
   name: 'login',
   data() {
@@ -48,10 +50,13 @@ export default {
     };
     return {
       loginForm: {
-        userName: '',
-        password: '',
+        userName: 'admin',
+        password: '123456',
         validateCode: ''
       },
+      checkedCode: '',
+      refreshState: 0,
+      sendCount: 0,
       loginRules: {
         password: [
           { required: true, trigger: 'blur', validator: validatePass }
@@ -62,18 +67,35 @@ export default {
       }
     };
   },
+  components: {
+    valicatedCode
+  },
   methods: {
     handleLogin() {
+      this.sendCount += 1;
       this.$refs.loginForm.validate(valid => {
         if (valid) {
-          console.log(valid);
           // 验证通过
+          const formData = this.loginForm;
+          if (formData.validateCode.toLowerCase() === this.checkedCode) {
+            if (formData.userName === 'admin' && formData.password === '123456') {
+              messageBox.success('success!');
+            } else {
+              messageBox.error('密码输入错误!');
+            }
+          } else {
+            messageBox.error('验证码输入错误!');
+            this.refreshState = this.sendCount;
+          }
         } else {
-          // 验证不通过
-          console.log('nulllllll');
-          messageBox.error('erroe');
+          console.log('验证失败');
         }
+        // 验证不通过
+        // messageBox.error('密码输入错误!');
       });
+    },
+    checkCode(val) {
+      this.checkedCode = val;
     }
   }
 };
