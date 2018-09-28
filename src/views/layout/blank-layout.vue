@@ -17,11 +17,22 @@ export default {
 </script>
 
 <style lang="scss">
+// 混入样式, 清楚浮动
+@import "src/styles/mixin.scss";
 .app-wrapper {
-// @include clearfix;
+  @include clearfix;
   position: relative;
   height: 100%;
   width: 100%;
+  // &.hideSidebar {
+  //   .sidebar-container {
+  //     width: 36px;
+  //   }
+  //   .main-container {
+  //     overflow: auto;
+  //     margin-left: 36px;
+  //   }
+  // }
   .main-container {
     height: 100%;
     min-height: 100%;
