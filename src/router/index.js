@@ -6,10 +6,10 @@ Vue.use(Router);
 // 路由设置
 export const constantRouterMap = [
   {
-    path: '/12',
+    path: '/test',
     component: blankLayout,
     hidden: true,
-    children: [{ path: '/', component: _import('test-main/2') }]
+    children: [{ path: '/', component: _import('layout/default-layout') }]
   },
   {
     path: '/',
