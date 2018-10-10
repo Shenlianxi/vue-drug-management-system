@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import blankLayout from 'views/layout/blank-layout';
+import defaultLayout from 'views/layout/default-layout';
 const _import = require('./_import_' + process.env.NODE_ENV);
 Vue.use(Router);
 // 路由设置
@@ -18,10 +19,10 @@ export const constantRouterMap = [
     children: [{ path: '/', component: _import('login/index') }]
   },
   {
-    path: '/dashboardview',
-    component: blankLayout,
-    hidden: true,
-    children: [{ path: '/', component: _import('login/index') }]
+    path: '/mainpageview',
+    component: defaultLayout,
+    hidden: true
+    // children: [{ path: '/', component: _import('login/index') }]
   }
 ];
 export default new Router({

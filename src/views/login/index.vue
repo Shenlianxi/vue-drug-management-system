@@ -80,6 +80,7 @@ export default {
           if (formData.validateCode.toLowerCase() === this.checkedCode) {
             if (formData.userName === 'admin' && formData.password === '123456') {
               messageBox.success('success!');
+              this.$router.push({ path: '/mainpageview' });
             } else {
               messageBox.error('密码输入错误!');
             }
