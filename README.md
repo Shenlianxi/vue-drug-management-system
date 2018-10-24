@@ -5,8 +5,11 @@
 ## Build Setup
 
 ``` bash
-# install dependencies
-npm install
+# Clone project
+git clone https://github.com/Shenlianxi/vue-drag-management-system
+
+# Install dependencies
+npm install --registry=https://registry.npm.taobao.org
 
 # serve with hot reload at localhost:8080
 npm run dev
