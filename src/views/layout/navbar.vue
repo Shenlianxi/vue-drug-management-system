@@ -41,6 +41,7 @@ import leftNav from './left-navbar';
 export default {
   data() {
     return {
+      // 注释测试老湿
       activeIndex: '1',
       leftMenuType: 'zhankaicaidan'
     };
