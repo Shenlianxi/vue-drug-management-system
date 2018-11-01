@@ -81,6 +81,7 @@ export default {
             if (formData.userName === 'admin' && formData.password === '123456') {
               messageBox.success('success!');
               this.$router.push({ path: '/mainpageview' });
+              // localStorage.setItem('tenentName', 'admin');
             } else {
               messageBox.error('密码输入错误!');
             }

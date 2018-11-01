@@ -31,6 +31,18 @@
         <el-menu-item index="3">分析系统</el-menu-item>
       <el-menu-item index="4">报表系统</el-menu-item>
       <el-menu-item index="5">销售系统</el-menu-item>
+      <div class="navbar-right">
+        <el-dropdown  trigger="click">
+          <span class="el-dropdown-link">
+            admin<i class="el-icon-arrow-down el-icon--right"></i>
+          </span>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item>管理员</el-dropdown-item>
+            <el-dropdown-item @click.native="logOut">登出</el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
+        <span class="lingdang"><i class="el-icon-bell"></i></span>
+      </div>
     </el-menu>
     <left-nav v-if="leftExsistState" :openLeftState="leftMenuType"></left-nav>
   </div>
@@ -61,6 +73,9 @@ export default {
     },
     handleChangeMenuType() {
       this.leftMenuType = this.leftMenuType === 'zhankaicaidan' ? 'shouqicaidan' : 'zhankaicaidan';
+    },
+    logOut() {
+      this.$router.push({ path: '/' });
     }
   },
   components: {
@@ -90,5 +105,22 @@ export default {
   height: 40px;
   margin: 10px 10px 10px 20px;
   width: 40px;
+}
+.navbar-right {
+  float: right;
+  height: 50px;
+  width: 160px;
+  // border: 1px solid red;
+  line-height: 50px;
+  color: #ffffff;
+}
+.el-dropdown-link {
+  color: #ffffff;
+  cursor: pointer;
+}
+.lingdang {
+  font-size: 28px;
+  color: #ffffff;
+  margin-left: 10px;
 }
 </style>

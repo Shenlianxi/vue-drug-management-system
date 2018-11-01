@@ -1,6 +1,5 @@
 <template>
   <div class="dashboard-main-page-wrapper">
-    <div class="main-page-nav"></div>
   </div>
 </template>
 
