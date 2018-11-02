@@ -2,7 +2,7 @@
   <div class="minicard-wrapper">
     <el-card class="card-box">
       <div class="icon">
-        <icon-svg  class="left-icon" :icon-class="iconType"></icon-svg>
+        <!-- <icon-svg  class="left-icon"></icon-svg> -->
       </div>
     </el-card>
   </div>
