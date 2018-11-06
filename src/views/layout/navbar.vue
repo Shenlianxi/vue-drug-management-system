@@ -73,6 +73,7 @@ export default {
     },
     handleChangeMenuType() {
       this.leftMenuType = this.leftMenuType === 'zhankaicaidan' ? 'shouqicaidan' : 'zhankaicaidan';
+      this.$store.commit('SET_MENU_TYPE', this.leftMenuType);
     },
     logOut() {
       this.$router.push({ path: '/' });

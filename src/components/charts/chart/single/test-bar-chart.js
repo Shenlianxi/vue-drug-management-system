@@ -25,9 +25,9 @@ export default class testBarChart extends Chart {
             }
           },
           itemStyle: {
-            normal: {
-              color: '#0066CC'
-            }
+            // normal: {
+            //   color: '#0066CC'
+            // }
           }
         };
         series.push(serieData);
@@ -35,9 +35,9 @@ export default class testBarChart extends Chart {
     }
     this.chart.setOption({
       title: {
-        text: chartData.chartTitle,
+        text: chartData.title,
         textStyle: {
-          fontSize: 12,
+          fontSize: 16,
           align: 'center'
         }
       },
