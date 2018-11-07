@@ -1,6 +1,5 @@
 import Chart from 'components/charts/chart';
-
-export default class testBarChart extends Chart {
+export default class lineChart extends Chart {
   constructor($ts, data) {
     super($ts, data);
   }
@@ -11,24 +10,21 @@ export default class testBarChart extends Chart {
     const xData = data.xData;
     const series = [];
     if (seriesData && seriesData.length > 0) {
-      seriesData.forEach((v, idx) => {
+      seriesData.forEach((v, index) => {
         const serieData = {
           name: v.name,
-          type: 'bar',
           data: v.data,
-          // data的数据格式: [{name: 'aa', value: 123}, {name: 'bbb', value: 221}, ...] 或者 [123, 221, ...]
-          animationDuration: 3000,
+          type: 'line',
+          animationDuration: 2600,
+          animationEasing: 'cubicInOut',
+          smooth: true,
           label: {
             normal: {
               show: true,
               position: 'top'
             }
           },
-          itemStyle: {
-            // normal: {
-            //   color: '#0066CC'
-            // }
-          }
+          itemStyle: {}
         };
         series.push(serieData);
       });
@@ -41,15 +37,36 @@ export default class testBarChart extends Chart {
           align: 'center'
         }
       },
-      tooltip: {},
+      tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+          type: 'cross'
+        }
+      },
       legend: {
+        x: 'center',
+        y: 'top',
         data: legendData
       },
       xAxis: {
-        data: xData
+        data: xData,
+        axisLabel: {
+          rotate: 24,
+          margin: 8
+        },
+        axisTick: {},
+        splitLine: {
+          show: false
+        },
+        boundaryGap: false
       },
-      yAxis: {},
-      series: series
+      yAxis: [{
+        type: 'value',
+        splitLine: {
+          show: false
+        }
+      }],
+      series
     });
   }
 }

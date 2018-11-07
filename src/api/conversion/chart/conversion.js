@@ -64,7 +64,9 @@ export default class ChartDataConversion {
   }
   mapper() {
     const mapper = [
-      { id: 1001, type: 'testBarChart' }
+      { id: 1001, type: 'testBarChart' },
+      { id: 1, type: 'pieChart' },
+      { id: 2, type: 'lineChart' }
       // { id: 1003, type: 'timeClock' },
       // { id: 1004, type: 'largeTitle' },
       // { id: 1005, type: 'normalTitle' },

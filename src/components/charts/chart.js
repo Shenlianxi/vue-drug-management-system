@@ -9,7 +9,7 @@ export default class Chart {
   initChart() {
     const $ts = this.$ts;
     let data = this.chartData;
-    this.chart = echarts.init($ts.$el, 'cockpit');
+    this.chart = echarts.init($ts.$el, 'macarons');
     data = this.conversionData(data);
     this.renderChart(data);
     this.chart.on('click', params => {

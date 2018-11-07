@@ -7,6 +7,7 @@
       :iconInfo="item"
       ></mini-card>
     <dms-chart v-if="chartData1 !== null && chartData1.data" class="testchart" :chartInitData="chartData1"></dms-chart>
+    <dms-chart v-if="chartData2 !== null && chartData2.data" class="testchart" :chartInitData="chartData2"></dms-chart>
   </div>
 </template>
 
@@ -49,9 +50,9 @@ export default {
         tempData.push(data);
       }
       this.miniCardData = tempData;
-      // 柱状图数据
+      // 柱状图数据,维度1,度量1
       const testData = {};
-      testData.theme = 'testYheme';
+      testData.theme = '';
       const innerData = {};
       innerData.id = 888;
       innerData.name = '测试图表';
@@ -66,7 +67,7 @@ export default {
           name: '客户数'
         }]
       };
-      tempdata.chartType = 1001;
+      tempdata.chartType = 2;
       tempdata.data = [
         ['南京市', 27087],
         ['常州市', 9699],
@@ -85,12 +86,50 @@ export default {
       const conversion = new ChartDataConversion();
       const chartDataTmp = conversion.convertToChartData(testData);
       this.wrapperChartData(chartDataTmp);
+      // 多度量数据
+      // const testData2 = {};
+      // testData2.theme = '';
+      // const innerData2 = {};
+      // innerData2.id = 999;
+      // innerData2.name = '测试图表';
+      // const tempdata2 = {};
+      // tempdata2.condition = {
+      //   dims: [{
+      //     id: 11,
+      //     name: '城市'
+      //   }],
+      //   measures: [{
+      //     id: 21,
+      //     name: '客户数'
+      //   }, {
+      //     id: 22,
+      //     name: '产值'
+      //   }]
+      // };
+      // tempdata2.chartType = 1;
+      // tempdata2.data = [
+      //   ['南京市', 27087, 1234],
+      //   ['常州市', 9699, 3214],
+      //   ['宿迁市', 4570, 3254],
+      //   ['徐州市', 4518, 1247],
+      //   ['南通市', 4329, 6521],
+      //   ['盐城市', 2954, 152],
+      //   ['泰州市', 2249, 998],
+      //   ['无锡市', 2119, 4571],
+      //   ['镇江市', 692, 4521],
+      //   ['淮安市', 121, 1234],
+      //   ['扬州市', 600, 6547]
+      // ];
+      // innerData2.data = JSON.stringify(tempdata2);
+      // testData2.data = innerData2;
+      // const conversion2 = new ChartDataConversion();
+      // const chartDataTmp2 = conversion2.convertToChartData(testData2);
+      // this.wrapperChartData2(chartDataTmp2);
     },
     wrapperChartData(data) {
       const chartData1 = data;
       this.chartData1 = data;
       if (chartData1) {
-        // this.currentView = getCurrentChart(chartData1.chartType);
         if (chartData1.data) {
           this.chartData1.data = chartData1.data;
           this.chartData1.header = chartData1.header;
@@ -103,6 +142,23 @@ export default {
         }
       }
       console.log(chartData1);
+    },
+    wrapperChartData2(data) {
+      const chartData2 = data;
+      this.chartData2 = data;
+      if (chartData2) {
+        if (chartData2.data) {
+          this.chartData2.data = chartData2.data;
+          this.chartData2.header = chartData2.header;
+          this.chartData2.dims = chartData2.dims;
+          this.chartData2.measures = chartData2.measures;
+          this.chartData2.filters = chartData2.filters;
+          this.chartData2.configs = chartData2.configs;
+        } else {
+          this.chartData2.data = [];
+        }
+      }
+      console.log(chartData2);
     }
   },
   watch: {
@@ -134,6 +190,7 @@ export default {
 .testchart {
   height: 300px;
   width: 300px;
+  margin-left: 10px;
   float: left;
   border: 1px solid blue;
 }

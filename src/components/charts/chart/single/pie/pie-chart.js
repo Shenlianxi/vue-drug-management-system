@@ -1,34 +1,28 @@
 import Chart from 'components/charts/chart';
 
-export default class testBarChart extends Chart {
+export default class pieChart extends Chart {
   constructor($ts, data) {
     super($ts, data);
   }
   renderChart(chartData) {
     const data = chartData;
     const seriesData = data.series;
-    const legendData = data.lengend;
-    const xData = data.xData;
     const series = [];
     if (seriesData && seriesData.length > 0) {
       seriesData.forEach((v, idx) => {
         const serieData = {
           name: v.name,
-          type: 'bar',
+          type: 'pie',
           data: v.data,
           // data的数据格式: [{name: 'aa', value: 123}, {name: 'bbb', value: 221}, ...] 或者 [123, 221, ...]
-          animationDuration: 3000,
+          animationEasing: 'cubicInOut',
           label: {
             normal: {
-              show: true,
-              position: 'top'
+              formatter: '{b} \n\n{c} ({d}%)'
             }
           },
-          itemStyle: {
-            // normal: {
-            //   color: '#0066CC'
-            // }
-          }
+          radius: [0, '45%'],
+          animationDuration: 1000
         };
         series.push(serieData);
       });
@@ -41,14 +35,16 @@ export default class testBarChart extends Chart {
           align: 'center'
         }
       },
-      tooltip: {},
+      tooltip: {
+        trigger: 'item',
+        formatter: function(params) {
+          return params.name + '</br>' + params.marker + params.seriesName + ':' + params.value;
+        }
+      },
       legend: {
-        data: legendData
+        show: false
       },
-      xAxis: {
-        data: xData
-      },
-      yAxis: {},
+      calculable: true,
       series: series
     });
   }
