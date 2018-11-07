@@ -54,9 +54,10 @@ export default {
 
 <style lang="scss" scoped>
 .minicard-wrapper {
-  margin-right: 2%;
+  margin-top: 5px;
+  margin-right: 1%;
   // height: 100%;
-  width: 22%;
+  width: 21%;
   min-width: 300px;
   min-height: 110px;
 }
