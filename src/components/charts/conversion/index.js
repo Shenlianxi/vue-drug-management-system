@@ -64,11 +64,7 @@ export default class DataConversion {
         orgData.forEach(v => {
           var dimValue = null;
           let dim = chartData.chartType.indexOf('MapChart') !== -1 ? v[0] ? v[0].toString().trim() : v[0] : v[0];
-          if (measures[0].ratioType === 7 || measures[0].ratioType === 8) {
-            dimValue = v[2];
-          } else {
-            dimValue = v[1];
-          }
+          dimValue = v[1];
           if (!dim) {
             dim = '-';
           }

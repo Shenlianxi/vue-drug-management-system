@@ -6,11 +6,20 @@ const path = require('path')
 
 module.exports = {
   dev: {
-    env: require('./prod.env'),
+    env: require('./dev.env'),
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+      port: 8086,
+      '/api': {
+        target: 'http://127.0.0.1:8080/sell',
+        changeOrigin: true,
+        pathRewrite: {
+            '^/api': ''
+        }
+    }
+    },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST

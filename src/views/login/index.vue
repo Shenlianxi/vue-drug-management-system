@@ -31,6 +31,7 @@
 <script>
 import * as messageBox from 'utils/message-box';
 import valicatedCode from 'components/valicated-com/verficated-code';
+import { testApi } from 'api/test-api';
 export default {
   name: 'login',
   data() {
@@ -72,6 +73,9 @@ export default {
   },
   methods: {
     handleLogin() {
+      testApi().then((result) => {
+        console.log(result);
+      });
       this.sendCount += 1;
       this.$refs.loginForm.validate(valid => {
         if (valid) {
