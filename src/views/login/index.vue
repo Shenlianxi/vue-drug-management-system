@@ -31,7 +31,7 @@
 <script>
 import * as messageBox from 'utils/message-box';
 import valicatedCode from 'components/valicated-com/verficated-code';
-import { testApi } from 'api/test-api';
+import { login } from 'api/user';
 export default {
   name: 'login',
   data() {
@@ -73,22 +73,20 @@ export default {
   },
   methods: {
     handleLogin() {
-      testApi().then((result) => {
-        console.log(result);
-      });
       this.sendCount += 1;
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           // 验证通过
           const formData = this.loginForm;
           if (formData.validateCode.toLowerCase() === this.checkedCode) {
-            if (formData.userName === 'admin' && formData.password === '123456') {
-              messageBox.success('success!');
-              this.$router.push({ path: '/mainpageview' });
-              // localStorage.setItem('tenentName', 'admin');
-            } else {
-              messageBox.error('密码输入错误!');
-            }
+            login(formData).then(response => {
+              if (response.data.success) {
+                this.$router.push({ path: '/mainpageview' });
+                this.$store.commit('SET_STATUS', 'online');
+              } else {
+                messageBox.error(response.data.errorMsg);
+              }
+            });
           } else {
             messageBox.error('验证码输入错误!');
             this.refreshState = this.sendCount;

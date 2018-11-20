@@ -76,6 +76,7 @@ export default {
       this.$store.commit('SET_MENU_TYPE', this.leftMenuType);
     },
     logOut() {
+      // this.$store.dispatch('setStatus', 'offline');
       this.$router.push({ path: '/' });
     }
   },

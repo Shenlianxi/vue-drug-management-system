@@ -2,10 +2,11 @@ import axios from 'axios';
 import {
   Message
 } from 'element-ui';
+// import store from '../store';
 import qs from 'qs';
 // 创建axios实例
 const bsUrl = process.env.BASE_API;
-console.log(bsUrl);
+// const status = store.getters.status;
 const service = axios.create({
   baseURL: bsUrl, // api的base_url
   headers: {
@@ -19,29 +20,6 @@ service.defaults.transformRequest = [function(data) {
   }
   return data;
 }];
-// let loadinginstace = null;
-// request拦截器
-// service.interceptors.request.use(config => {
-//   debugger;
-//   const notLoading = config.headers.loading;
-//   if (!notLoading) {
-//     loadinginstace = Loading.service({
-//       fullscreen: true,
-//       text: '处理中'
-//     });
-//     delete config.headers.loading;
-//   } else {
-//     if (notLoading.toLowerCase() !== 'true') {
-//       loadinginstace = Loading.service({
-//         fullscreen: true,
-//         text: '处理中',
-//         target: notLoading
-//       });
-//       delete config.headers.loading;
-//     }
-//   }
-// });
-
 // respone拦截器
 service.interceptors.response.use(
   response => {
