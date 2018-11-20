@@ -66,6 +66,15 @@ export default {
       type: String
     }
   },
+  computed: {
+    // leftState() {
+    //   if ((window.location.href).indexOf('mainpageview') !== -1) {
+    //     return true;
+    //   } else {
+    //     return false;
+    //   }
+    // }
+  },
   watch: {
     openLeftState(newVal, oldVal) {
       this.isCollapse = !this.isCollapse;

@@ -23,6 +23,54 @@ export const constantRouterMap = [
     component: defaultLayout,
     hidden: true,
     children: [{ path: '/', component: _import('dashboard/recent-news') }]
+  },
+  {
+    path: '/datacenter',
+    component: defaultLayout,
+    hidden: true,
+    children: [{ path: '/', component: _import('data-center/index') }]
+  },
+  {
+    path: '/maintenance',
+    component: defaultLayout,
+    hidden: true,
+    children: [{ path: '/', component: _import('maintenance/index') }]
+  },
+  {
+    path: '/inventory',
+    component: defaultLayout,
+    hidden: true,
+    children: [{ path: '/', component: _import('inventory/index') }]
+  },
+  {
+    path: '/stockout',
+    component: defaultLayout,
+    hidden: true,
+    children: [{ path: '/', component: _import('stockout/index') }]
+  },
+  {
+    path: '/ordermaster',
+    component: defaultLayout,
+    hidden: true,
+    children: [{ path: '/', component: _import('ordermaster/index') }]
+  },
+  {
+    path: '/analysis',
+    component: defaultLayout,
+    hidden: true,
+    children: [{ path: '/', component: _import('analysis/index') }]
+  },
+  {
+    path: '/dashboardview',
+    component: defaultLayout,
+    hidden: true,
+    children: [{ path: '/', component: _import('dashboardview/index') }]
+  },
+  {
+    path: '/sales',
+    component: defaultLayout,
+    hidden: true,
+    children: [{ path: '/', component: _import('sales/index') }]
   }
 ];
 export default new Router({

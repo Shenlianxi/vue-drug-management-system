@@ -7,30 +7,31 @@
       text-color="#fff"
       active-text-color="#ffd04b">
       <!-- 导航栏需要的功能再次拓展 -->
-      <div v-if="leftExsistState" class="nav-pull-push" @click="handleChangeMenuType">
+      <div class="nav-pull-push" @click="handleChangeMenuType">
         <icon-svg :icon-class="leftMenuType" ></icon-svg>
       </div>
-      <div class="profile-photo">
+      <div class="profile-photo" @click="goTo">
         <img style="height:100%; width:100%" src="@/assets/image/gears.png">;
       </div>
       <el-menu-item index="1">数据中心</el-menu-item>
-      <el-submenu index="2">
-        <template slot="title">维护驾驶舱</template>
-        <el-menu-item index="2-1">维护列表</el-menu-item>
+      <el-menu-item index="2">维护驾驶舱</el-menu-item>
+      <!-- <el-submenu index="2">
+        <template slot="title"></template> -->
+        <!-- <el-menu-item index="2-1">维护列表</el-menu-item> -->
         <!-- 显示维护的医护人员列表 -->
-        <el-menu-item index="2-2">药品信息维护</el-menu-item>
+        <!-- <el-menu-item index="2-2">药品信息维护</el-menu-item> -->
         <!-- 提供修改价格等信息, 查询等功能, 类别修改 -->
-        <el-menu-item index="2-3">顾客信息维护</el-menu-item>
-      </el-submenu>
-        <el-submenu index="2-4">
+        <!-- <el-menu-item index="2-3">顾客信息维护</el-menu-item> -->
+      <!-- </el-submenu> -->
+        <el-submenu index="3">
           <template slot="title">库存管理</template>
-          <el-menu-item index="2-4-1">药品入库</el-menu-item>
-          <el-menu-item index="2-4-2">药品出库</el-menu-item>
+          <el-menu-item index="3-1">药品入库</el-menu-item>
+          <el-menu-item index="3-2">药品出库</el-menu-item>
         </el-submenu>
-        <el-menu-item index="2-5">订单管理</el-menu-item>
-        <el-menu-item index="3">分析系统</el-menu-item>
-      <el-menu-item index="4">报表系统</el-menu-item>
-      <el-menu-item index="5">销售系统</el-menu-item>
+        <el-menu-item index="4">订单管理</el-menu-item>
+        <el-menu-item index="5">分析系统</el-menu-item>
+      <el-menu-item index="6">报表系统</el-menu-item>
+      <el-menu-item index="7">销售系统</el-menu-item>
       <div class="navbar-right">
         <el-dropdown  trigger="click">
           <span class="el-dropdown-link">
@@ -44,7 +45,7 @@
         <span class="lingdang"><i class="el-icon-bell"></i></span>
       </div>
     </el-menu>
-    <left-nav v-if="leftExsistState" :openLeftState="leftMenuType"></left-nav>
+    <left-nav :openLeftState="leftMenuType"></left-nav>
   </div>
 </template>
 
@@ -53,23 +54,18 @@ import leftNav from './left-navbar';
 export default {
   data() {
     return {
-      // 注释测试老湿
       activeIndex: '1',
       leftMenuType: 'zhankaicaidan'
     };
   },
   computed: {
-    leftExsistState() {
-      if ((window.location.href).indexOf('mainpageview') !== -1) {
-        return true;
-      } else {
-        return false;
-      }
-    }
   },
   methods: {
     handleSelect(key, keypath) {
-      console.log(key, keypath);
+      const mapper = this.mapper();
+      const currentRouter = (mapper.filter(item => item.key === key))[0];
+      this.$router.push({ path: currentRouter.loc });
+      console.log(key);
     },
     handleChangeMenuType() {
       this.leftMenuType = this.leftMenuType === 'zhankaicaidan' ? 'shouqicaidan' : 'zhankaicaidan';
@@ -78,6 +74,22 @@ export default {
     logOut() {
       // this.$store.dispatch('setStatus', 'offline');
       this.$router.push({ path: '/' });
+    },
+    goTo() {
+      this.$router.push({ path: '/mainpageview' });
+    },
+    mapper() {
+      const mapper = [
+        { key: '1', loc: '/datacenter' },
+        { key: '2', loc: '/maintenance' },
+        { key: '3-1', loc: '/inventory' },
+        { key: '3-2', loc: '/stockout' },
+        { key: '4', loc: '/ordermaster' },
+        { key: '5', loc: '/analysis' },
+        { key: '6', loc: '/dashboardview' },
+        { key: '7', loc: '/sales' }
+      ];
+      return mapper;
     }
   },
   components: {
@@ -107,6 +119,7 @@ export default {
   height: 40px;
   margin: 10px 10px 10px 20px;
   width: 40px;
+  cursor: pointer;
 }
 .navbar-right {
   float: right;
@@ -124,5 +137,6 @@ export default {
   font-size: 28px;
   color: #ffffff;
   margin-left: 10px;
+  cursor: pointer;
 }
 </style>
