@@ -6,8 +6,8 @@
       :key="item.index"
       :iconInfo="item"
       ></mini-card>
-    <dms-chart v-if="chartData1 !== null && chartData1.data" class="testchart" :chartInitData="chartData1"></dms-chart>
-    <dms-chart v-if="chartData2 !== null && chartData2.data" class="testchart" :chartInitData="chartData2"></dms-chart>
+    <!-- <dms-chart v-if="chartData1 !== null && chartData1.data" class="testchart" :chartInitData="chartData1"></dms-chart>
+    <dms-chart v-if="chartData2 !== null && chartData2.data" class="testchart" :chartInitData="chartData2"></dms-chart> -->
   </div>
 </template>
 
@@ -15,6 +15,9 @@
 import miniCard from 'components/dashboard-tools/mini-card';
 import dmsChart from 'components/charts/dms-chart';
 import ChartDataConversion from 'api/conversion/chart/conversion';
+import * as messageBox from 'utils/message-box';
+import { getTotal } from 'api/dashboard';
+
 export default {
   data() {
     return {
@@ -38,7 +41,24 @@ export default {
   },
   methods: {
     initData() {
-      this.loadMockData();
+      // this.loadMockData();
+      getTotal().then(response => {
+        if (response.data.success) {
+          const apiData = response.data.data[0];
+          console.log(apiData);
+          const tempArr = [apiData.totalIncome, apiData.totalOutstock, apiData.totalOperation, apiData.totalSales];
+          const tempData = [];
+          for (let i = 0; i < 4; i++) {
+            const data = {};
+            data.index = i;
+            data.number = tempArr[i];
+            tempData.push(data);
+          }
+          this.miniCardData = tempData;
+        } else {
+          messageBox.error(response.data.errorMsg);
+        }
+      });
     },
     loadMockData() {
       // 卡片图数据

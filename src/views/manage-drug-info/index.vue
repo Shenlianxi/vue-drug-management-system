@@ -1,6 +1,6 @@
 <template>
   <div>
-    我是数据中心
+    我是药品信息维护
   </div>
 </template>
 

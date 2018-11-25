@@ -1,9 +1,9 @@
 import fetch from 'utils/fetch';
-
+import md5 from 'js-md5';
 export function login(data) {
   const param = {
     userName: data.userName,
-    password: data.password
+    password: md5(data.password)
   };
   return fetch({
     url: '/user/login',

@@ -24,9 +24,9 @@
         <!-- <el-menu-item index="2-3">顾客信息维护</el-menu-item> -->
       <!-- </el-submenu> -->
         <el-submenu index="3">
-          <template slot="title">库存管理</template>
-          <el-menu-item index="3-1">药品入库</el-menu-item>
-          <el-menu-item index="3-2">药品出库</el-menu-item>
+          <template slot="title">药品管理</template>
+          <el-menu-item index="3-1">药品信息维护</el-menu-item>
+          <el-menu-item index="3-2">库存管理</el-menu-item>
         </el-submenu>
         <el-menu-item index="4">订单管理</el-menu-item>
         <el-menu-item index="5">分析系统</el-menu-item>
@@ -82,8 +82,8 @@ export default {
       const mapper = [
         { key: '1', loc: '/datacenter' },
         { key: '2', loc: '/maintenance' },
-        { key: '3-1', loc: '/inventory' },
-        { key: '3-2', loc: '/stockout' },
+        { key: '3-1', loc: '/managedrug' },
+        { key: '3-2', loc: '/stock' },
         { key: '4', loc: '/ordermaster' },
         { key: '5', loc: '/analysis' },
         { key: '6', loc: '/dashboardview' },

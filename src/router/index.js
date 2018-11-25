@@ -37,16 +37,16 @@ export const constantRouterMap = [
     children: [{ path: '/', component: _import('maintenance/index') }]
   },
   {
-    path: '/inventory',
+    path: '/managedrug',
     component: defaultLayout,
     hidden: true,
-    children: [{ path: '/', component: _import('inventory/index') }]
+    children: [{ path: '/', component: _import('manage-drug-info/index') }]
   },
   {
-    path: '/stockout',
+    path: '/stock',
     component: defaultLayout,
     hidden: true,
-    children: [{ path: '/', component: _import('stockout/index') }]
+    children: [{ path: '/', component: _import('stock/index') }]
   },
   {
     path: '/ordermaster',

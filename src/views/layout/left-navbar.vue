@@ -16,9 +16,9 @@
           <el-menu-item index="1-2">如何创建数据</el-menu-item>
           <el-menu-item index="1-3">如何管理数据</el-menu-item>
         </el-menu-item-group>
-        <el-menu-item-group title="账号">
+        <el-menu-item-group title="账户">
           <el-menu-item index="1-3">账户信息维护</el-menu-item>
-          <el-menu-item index="1-4">上传头像</el-menu-item>
+          <el-menu-item index="1-4">用户管理</el-menu-item>
         </el-menu-item-group>
         <!-- <el-submenu index="1-4">
           <span slot="title">协作部门</span>
