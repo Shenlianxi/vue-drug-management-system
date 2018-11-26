@@ -1,6 +1,8 @@
 <template>
-  <div>
-    我是药品信息维护
+  <div class="drug-info-wrapper">
+    <div class="drug-title">
+      <span></span>
+    </div>
   </div>
 </template>
 
@@ -10,5 +12,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.drug-info-wrapper {
+  min-width: 100%;
+  height: 100%;
+  border: 1px solid red;
+}
 </style>

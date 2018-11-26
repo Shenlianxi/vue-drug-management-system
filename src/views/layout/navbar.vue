@@ -11,7 +11,7 @@
         <icon-svg :icon-class="leftMenuType" ></icon-svg>
       </div>
       <div class="profile-photo" @click="goTo">
-        <img style="height:100%; width:100%" src="@/assets/image/gears.png">;
+        <img style="height:100%; width:100%" src="@/assets/image/gears.png">
       </div>
       <el-menu-item index="1">数据中心</el-menu-item>
       <el-menu-item index="2">维护驾驶舱</el-menu-item>
@@ -45,7 +45,7 @@
         <span class="lingdang"><i class="el-icon-bell"></i></span>
       </div>
     </el-menu>
-    <left-nav :openLeftState="leftMenuType"></left-nav>
+    <left-nav v-if="leftExsistState" :openLeftState="leftMenuType"></left-nav>
   </div>
 </template>
 
@@ -55,16 +55,27 @@ export default {
   data() {
     return {
       activeIndex: '1',
-      leftMenuType: 'zhankaicaidan'
+      leftMenuType: 'zhankaicaidan',
+      leftExsistState: true
     };
   },
+  watch: {
+  },
   computed: {
+    // leftExsist() {
+    //   if ((location.href).indexOf('mainpageview') !== -1) {
+    //     return true;
+    //   } else {
+    //     return false;
+    //   }
+    // }
   },
   methods: {
     handleSelect(key, keypath) {
       const mapper = this.mapper();
       const currentRouter = (mapper.filter(item => item.key === key))[0];
       this.$router.push({ path: currentRouter.loc });
+      this.leftExsistState = false;
       console.log(key);
     },
     handleChangeMenuType() {
@@ -77,6 +88,7 @@ export default {
     },
     goTo() {
       this.$router.push({ path: '/mainpageview' });
+      this.leftExsistState = true;
     },
     mapper() {
       const mapper = [
@@ -113,6 +125,8 @@ export default {
   margin-left: 10px;
   font-size: 30px;
   color: #409EFF;
+  transition: all 0.2s ease-in;
+  -webkit-transition: all 0.3s ease-in;
 }
 .profile-photo {
   float: left;
