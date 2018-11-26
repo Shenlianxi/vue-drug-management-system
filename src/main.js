@@ -4,6 +4,7 @@ import Vue from 'vue';
 import App from './App';
 import router from './router';
 import elementUI from 'element-ui';
+import * as filters from './filters';
 import 'element-ui/lib/theme-chalk/index.css';
 import i18n from './lang';
 import store from './store';
@@ -14,6 +15,10 @@ Vue.config.productionTip = false;
 Vue.use(elementUI, {
   size: 'medium',
   i18n: (key, value) => i18n.t(key, value)
+});
+
+Object.keys(filters).forEach(key => {
+  Vue.filter(key, filters[key]);
 });
 
 /* eslint-disable no-new */

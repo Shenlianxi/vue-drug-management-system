@@ -56,7 +56,7 @@ export default {
     return {
       activeIndex: '1',
       leftMenuType: 'zhankaicaidan',
-      leftExsistState: true
+      leftExsistState: false
     };
   },
   watch: {
@@ -69,6 +69,13 @@ export default {
     //     return false;
     //   }
     // }
+  },
+  mounted() {
+    if ((location.href).indexOf('mainpageview') !== -1) {
+      this.leftExsistState = true;
+    } else {
+      this.leftExsistState = false;
+    }
   },
   methods: {
     handleSelect(key, keypath) {
