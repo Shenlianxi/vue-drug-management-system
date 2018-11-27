@@ -36,3 +36,63 @@ export function updateDrug(data) {
   });
 }
 
+export function deleteDrug(data) {
+  return fetch({
+    url: '/drug/delete/' + data.drugId,
+    method: 'delete',
+    headers: { loading: 'true' }
+  });
+}
+
+export function getCategory() {
+  return fetch({
+    url: '/category',
+    method: 'get',
+    headers: { loading: 'true' }
+  });
+}
+
+export function addCategory(data) {
+  const param = {
+    categoryName: data.name,
+    categoryDesc: data.desc
+  };
+  return fetch({
+    url: '/category/add',
+    method: 'post',
+    headers: { loading: 'true' },
+    data: param
+  });
+}
+
+export function addDrug(data) {
+  const param = {
+    name: data.name,
+    category: data.category,
+    price: data.price,
+    amount: data.amount,
+    resource: data.resource,
+    function: data.function,
+    icon: data.icon
+  };
+  return fetch({
+    url: '/drug/insert',
+    method: 'post',
+    headers: { loading: 'true' },
+    data: param
+  });
+}
+
+export function stockManage(data) {
+  const param = {
+    drugId: data.drugId,
+    count: data.count,
+    type: data.type
+  };
+  return fetch({
+    url: '/drug/stock',
+    method: 'post',
+    headers: { loading: 'true' },
+    data: param
+  });
+}

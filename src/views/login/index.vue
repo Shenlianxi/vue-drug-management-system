@@ -51,8 +51,8 @@ export default {
     };
     return {
       loginForm: {
-        userName: 'admin',
-        password: '123456',
+        userName: '',
+        password: '',
         validateCode: ''
       },
       checkedCode: '',
@@ -83,6 +83,7 @@ export default {
               if (response.data.success) {
                 this.$router.push({ path: '/mainpageview' });
                 this.$store.commit('SET_STATUS', 'online');
+                localStorage.setItem('userName', formData.userName);
               } else {
                 messageBox.error(response.data.errorMsg);
               }

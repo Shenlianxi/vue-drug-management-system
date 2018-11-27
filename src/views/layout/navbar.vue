@@ -7,7 +7,7 @@
       text-color="#fff"
       active-text-color="#ffd04b">
       <!-- 导航栏需要的功能再次拓展 -->
-      <div class="nav-pull-push" @click="handleChangeMenuType">
+      <div :class="{'nav-pull-push': leftExsistState, 'nav-pull-push-no': !leftExsistState}" @click="handleChangeMenuType">
         <icon-svg :icon-class="leftMenuType" ></icon-svg>
       </div>
       <div class="profile-photo" @click="goTo">
@@ -128,6 +128,14 @@ export default {
   line-height: 60px;
 }
 .nav-pull-push {
+  float: left;
+  margin-left: 10px;
+  font-size: 30px;
+  color: #409EFF;
+  transition: all 0.2s ease-in;
+  -webkit-transition: all 0.3s ease-in;
+}
+.nav-pull-push-no {
   float: left;
   margin-left: 10px;
   font-size: 30px;
