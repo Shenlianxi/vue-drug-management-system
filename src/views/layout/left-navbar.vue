@@ -17,22 +17,22 @@
           <el-menu-item index="1-3">如何管理数据</el-menu-item>
         </el-menu-item-group>
         <el-menu-item-group title="账户">
-          <el-menu-item index="1-3">账户信息维护</el-menu-item>
-          <el-menu-item index="1-4">用户管理</el-menu-item>
+          <el-menu-item index="2-1">账户信息维护</el-menu-item>
+          <el-menu-item index="2-2">用户管理</el-menu-item>
         </el-menu-item-group>
         <!-- <el-submenu index="1-4">
           <span slot="title">协作部门</span>
           <el-menu-item index="1-4-1">选项1</el-menu-item>
         </el-submenu> -->
       </el-submenu>
-      <el-menu-item index="2">
+      <el-menu-item index="3">
         <i class="el-icon-menu"></i>
         <span slot="title">推广中心</span>
         <!-- 广告推广出租等信息 -->
       </el-menu-item>
-      <el-menu-item index="3">
+      <el-menu-item index="4">
         <i class="el-icon-document"></i>
-        <span slot="title">生活指南</span>
+        <span slot="title">记事本</span>
       </el-menu-item>
       <!-- <el-menu-item index="4">
         <i class="el-icon-setting"></i>

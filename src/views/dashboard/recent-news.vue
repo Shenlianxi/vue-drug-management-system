@@ -208,9 +208,9 @@ export default {
   float: left;
 }
 .testchart {
-  height: 300px;
-  width: 300px;
-  margin-left: 10px;
+  height: 400px;
+  width: 400px;
+  margin-left: 100px;
   float: left;
   border: 1px solid blue;
 }
