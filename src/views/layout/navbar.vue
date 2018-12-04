@@ -35,10 +35,10 @@
       <div class="navbar-right">
         <el-dropdown  trigger="click">
           <span class="el-dropdown-link">
-            admin<i class="el-icon-arrow-down el-icon--right"></i>
+            {{userName}}<i class="el-icon-arrow-down el-icon--right"></i>
           </span>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item>管理员</el-dropdown-item>
+            <el-dropdown-item v-if="roleName">{{roleName}}</el-dropdown-item>
             <el-dropdown-item @click.native="logOut">登出</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
@@ -51,12 +51,15 @@
 
 <script>
 import leftNav from './left-navbar';
+import { removeToken } from '@/utils/auth';
 export default {
   data() {
     return {
       activeIndex: '1',
       leftMenuType: 'zhankaicaidan',
-      leftExsistState: false
+      leftExsistState: false,
+      userName: '',
+      roleName: ''
     };
   },
   watch: {
@@ -76,6 +79,9 @@ export default {
     } else {
       this.leftExsistState = false;
     }
+    const userData = JSON.parse(localStorage.getItem('userData'));
+    this.userName = userData.userName;
+    this.roleName = userData.userRole;
   },
   methods: {
     handleSelect(key, keypath) {
@@ -91,7 +97,9 @@ export default {
     },
     logOut() {
       // this.$store.dispatch('setStatus', 'offline');
-      this.$router.push({ path: '/' });
+      removeToken();
+      // this.$router.push({ path: '/' });
+      location.reload();
     },
     goTo() {
       this.$router.push({ path: '/mainpageview' });

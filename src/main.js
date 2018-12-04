@@ -8,6 +8,7 @@ import * as filters from './filters';
 import 'element-ui/lib/theme-chalk/index.css';
 import i18n from './lang';
 import store from './store';
+import './permission';
 import './icons';
 import 'assets/theme/macarons';
 

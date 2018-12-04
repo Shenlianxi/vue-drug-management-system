@@ -32,6 +32,7 @@
 import * as messageBox from 'utils/message-box';
 import valicatedCode from 'components/valicated-com/verficated-code';
 import { login } from 'api/user';
+import { setToken } from '@/utils/auth';
 export default {
   name: 'login',
   data() {
@@ -81,9 +82,13 @@ export default {
           if (formData.validateCode.toLowerCase() === this.checkedCode) {
             login(formData).then(response => {
               if (response.data.success) {
+                const tokenData = {};
+                tokenData.token = Math.random().toString(36).substr(2);
+                setToken(tokenData);
                 this.$router.push({ path: '/mainpageview' });
                 this.$store.commit('SET_STATUS', 'online');
-                localStorage.setItem('userName', formData.userName);
+                const respData = response.data.data;
+                localStorage.setItem('userData', JSON.stringify(respData));
               } else {
                 messageBox.error(response.data.errorMsg);
               }

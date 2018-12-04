@@ -13,7 +13,7 @@ export const constantRouterMap = [
     children: [{ path: '/', component: _import('layout/default-layout') }]
   },
   {
-    path: '/',
+    path: '/login',
     component: blankLayout,
     hidden: true,
     children: [{ path: '/', component: _import('login/index') }]
