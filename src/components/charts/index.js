@@ -1,6 +1,7 @@
 import TestBarChart from 'components/charts/chart/single/test-bar-chart';
 import PieChart from 'components/charts/chart/single/pie/pie-chart';
 import LineChart from 'components/charts/chart/single/line/line-chart';
+import ChinaShowMap from 'components/charts/chart/single/map/china-show-map';
 export function getProps() {
   return {
     className: {
@@ -66,7 +67,8 @@ export function createChart($ts, chartData) {
   const charts = [
     { id: 'testBarChart', instance: new TestBarChart($ts, chartData) },
     { id: 'pieChart', instance: new PieChart($ts, chartData) },
-    { id: 'lineChart', instance: new LineChart($ts, chartData) }
+    { id: 'lineChart', instance: new LineChart($ts, chartData) },
+    { id: 'chinaShowMap', instance: new ChinaShowMap($ts, chartData) }
   ];
   let chart = null;
   if (chartData) {

@@ -7,3 +7,11 @@ export function getTotal() {
     headers: { loading: 'true' }
   });
 }
+
+export function getMaps() {
+  return fetch({
+    url: '/show/mapdata',
+    method: 'get',
+    headers: { loading: 'true' }
+  });
+}

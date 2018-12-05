@@ -62,6 +62,31 @@ export default class ChartDataConversion {
     result.origin = originData;
     return result;
   }
+  convertToChinaMapData(responseResult) {
+    const originData = deepClone(responseResult);
+    const result = {};
+    const responseData = responseResult;
+    if (!responseData) {
+      return result;
+    }
+    result.chartType = 'chinaShowMap';
+    result.chartTitle = responseData[0].title;
+    const data = [];
+    responseData.forEach(el => {
+      const tempData = {};
+      tempData.name = el.area;
+      if (el.type === 1 || el.type === 2) {
+        tempData.value = el.count;
+      } else {
+        tempData.value = el.money;
+      }
+      data.push(tempData);
+    });
+    result.data = data;
+    result.legend = responseResult[0].type === 3 ? '金额(单位:元)' : '数量';
+    result.origin = originData;
+    return result;
+  }
   mapper() {
     const mapper = [
       { id: 1001, type: 'testBarChart' },

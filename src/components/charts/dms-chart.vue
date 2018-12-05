@@ -35,6 +35,15 @@ export default {
       type: Object
     }
   },
+  watch: {
+    chartInitData: {
+      handler(newValue) {
+        console.log(newValue);
+        this.activeRefresh(newValue);
+      },
+      deep: false
+    }
+  },
   components: {
     defaultChart
   },
@@ -45,6 +54,12 @@ export default {
         this.currentView = getCurrentChart(data.chartType);
         this.chartData = data;
       }
+    },
+    activeRefresh(chartData) {
+      if (chartData) {
+        this.currentView = getCurrentChart(chartData.chartType);
+        this.chartData = chartData;
+      }
     }
   }
 };
@@ -52,8 +67,8 @@ export default {
 
 <style lang="scss" scoped>
 .dms-chart-wrapper {
-  // height: 100%;
-  // width: 100%;
+  height: 100%;
+  width: 100%;
 }
 .dms-chart-card-body {
   height: 100%;

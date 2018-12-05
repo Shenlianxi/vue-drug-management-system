@@ -12,13 +12,13 @@
         </template>
         <el-menu-item-group>
           <span slot="title">使用指南</span>
-          <el-menu-item index="1-1">最近消息</el-menu-item>
+          <el-menu-item index="1-1">信息概览</el-menu-item>
           <el-menu-item index="1-2">如何创建数据</el-menu-item>
           <el-menu-item index="1-3">如何管理数据</el-menu-item>
         </el-menu-item-group>
         <el-menu-item-group title="账户">
-          <el-menu-item index="2-1">账户信息维护</el-menu-item>
-          <el-menu-item index="2-2">用户管理</el-menu-item>
+          <!-- <el-menu-item index="2-1">账户信息维护</el-menu-item> -->
+          <el-menu-item index="2-2">用户信息</el-menu-item>
         </el-menu-item-group>
         <!-- <el-submenu index="1-4">
           <span slot="title">协作部门</span>

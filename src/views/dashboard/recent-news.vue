@@ -6,8 +6,22 @@
       :key="item.index"
       :iconInfo="item"
       ></mini-card>
-    <!-- <dms-chart v-if="chartData1 !== null && chartData1.data" class="testchart" :chartInitData="chartData1"></dms-chart>
-    <dms-chart v-if="chartData2 !== null && chartData2.data" class="testchart" :chartInitData="chartData2"></dms-chart> -->
+      <div class="recent-map">
+        <div class="map-desc">
+          <span class="item">请选择数据源:</span>
+          <el-select v-model="dataType" @change="handleMap">
+            <el-option
+              v-for="item in typeOption"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+              ></el-option>
+          </el-select>
+        </div>
+        <div class="map-content">
+          <dms-chart :chartInitData="mapChartData"></dms-chart>
+        </div>
+      </div>
   </div>
 </template>
 
@@ -16,15 +30,17 @@ import miniCard from 'components/dashboard-tools/mini-card';
 import dmsChart from 'components/charts/dms-chart';
 import ChartDataConversion from 'api/conversion/chart/conversion';
 import * as messageBox from 'utils/message-box';
-import { getTotal } from 'api/dashboard';
+import { getTotal, getMaps } from 'api/dashboard';
 
 export default {
   data() {
     return {
       computedWidth: document.body.clientWidth - 220 + 'px',
       miniCardData: [],
-      chartData1: {},
-      chartData2: {}
+      allMapData: [],
+      dataType: 1,
+      typeOption: [],
+      mapChartData: {}
     };
   },
   components: {
@@ -42,6 +58,7 @@ export default {
   methods: {
     initData() {
       // this.loadMockData();
+      const $ts = this;
       getTotal().then(response => {
         if (response.data.success) {
           const apiData = response.data.data[0];
@@ -59,6 +76,37 @@ export default {
           messageBox.error(response.data.errorMsg);
         }
       });
+      getMaps().then(resp => {
+        if (resp.data.success) {
+          $ts.allMapData = resp.data.data;
+          $ts.handleMap(1);
+        } else {
+          messageBox.error(resp.data.errorMsg);
+        }
+      });
+      this.typeOption = [{ value: 1, label: '入库分布' }, { value: 2, label: '出库分布' }, { value: 3, label: '销售分布' }];
+    },
+    handleMap(type) {
+      const mapper = [
+        { title: '入库药品地区分布', key: 1 },
+        { title: '出库药品地区分布', key: 2 },
+        { title: '销售地区分布', key: 3 }
+      ];
+      const currentTitle = mapper.filter(item => item.key === type);
+      const allData = this.allMapData;
+      const resultData = [];
+      allData.forEach(element => {
+        if (element.type === type) {
+          const temp = element;
+          temp.title = currentTitle[0].title;
+          resultData.push(temp);
+        }
+      });
+      console.log(resultData);
+      const conversion = new ChartDataConversion();
+      const chartDataTmp = conversion.convertToChinaMapData(resultData);
+      console.log(chartDataTmp);
+      this.mapChartData = chartDataTmp;
     },
     loadMockData() {
       // 卡片图数据
@@ -213,5 +261,33 @@ export default {
   margin-left: 100px;
   float: left;
   border: 1px solid blue;
+}
+.recent-map {
+  width: 1150px;
+  height: 550px;
+  float: left;
+  // border: 1px solid red;
+  // margin: 10px 206px;
+  position: relative;
+}
+.map-desc {
+  width: 160px;
+  height: 100%;
+  float: left;
+  margin: 10px 30px 10px 0px;
+  // border: 1px solid blue;
+}
+.map-content {
+  width: 800px;
+  height: 100%;
+  float: left;
+  // border: 1px solid green;
+  margin: 10px;
+}
+.item {
+  width: 100%;
+  height: 30px;
+  margin-bottom: 5px;
+  display: block;
 }
 </style>

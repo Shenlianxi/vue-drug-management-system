@@ -37,8 +37,21 @@ export default class DataConversion {
         if (measures && measures.length > 1 && dims.length === 1) {
           this.manyMeasures(chartData, result, dims);
         }
+        if (chartData.chartType === 'chinaShowMap') {
+          this.chinaShowMap(chartData, result);
+        }
       }
     });
+  }
+  chinaShowMap(chartData, result) {
+    result.originData = chartData.origin;
+    result.widths = chartData.widths ? chartData.widths : [];
+    result.title = chartData.chartTitle;
+    result.measures = [];
+    result.dims = [];
+    result.series = chartData.data;
+    result.xData = '地区';
+    result.legend = chartData.legend;
   }
   unidimensional(chartData, result, dims) {
     result.originData = chartData.originData;
@@ -47,7 +60,6 @@ export default class DataConversion {
     const measures = chartData.measures;
     result.measures = measures;
     result.configs = chartData.configs;
-    result.hideFlag = chartData.hideFlag;
     if (chartData.clientWidth) {
       result.clientWidth = chartData.clientWidth;
     }
