@@ -1,5 +1,8 @@
 <template>
-  <div class="dms-chart-wrapper">
+  <div class="dms-chart-wrapper"
+    v-loading="loading"
+    element-loading-text="加载中"
+    >
     <!-- 预留标题位置 -->
     <!-- <div v-if="appearConfigData.titleTop" class="bear-chart-card-title" :style="appearConfigData.title">
       <div class="bear-card-header">
@@ -23,7 +26,8 @@ export default {
     return {
       // charts渲染
       currentView: null,
-      chartData: {}
+      chartData: {},
+      loading: false
     };
   },
   mounted() {
@@ -38,6 +42,7 @@ export default {
   watch: {
     chartInitData: {
       handler(newValue) {
+        this.loading = true;
         console.log(newValue);
         this.activeRefresh(newValue);
       },
@@ -49,17 +54,22 @@ export default {
   },
   methods: {
     initData() {
+      this.loading = true;
       const data = this.chartInitData;
       if (data && data.data) {
         this.currentView = getCurrentChart(data.chartType);
         this.chartData = data;
       }
+      this.loading = false;
     },
     activeRefresh(chartData) {
       if (chartData) {
         this.currentView = getCurrentChart(chartData.chartType);
         this.chartData = chartData;
       }
+      setTimeout(() => {
+        this.loading = false;
+      }, 500);
     }
   }
 };

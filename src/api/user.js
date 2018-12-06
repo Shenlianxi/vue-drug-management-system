@@ -12,3 +12,39 @@ export function login(data) {
     data: param
   });
 }
+
+export function changePwd(data) {
+  const param = {
+    oldPwd: md5(data.oldPwd),
+    newPwd: md5(data.newPwd)
+  };
+  return fetch({
+    url: '/user/changePassword',
+    method: 'post',
+    headers: { loading: 'true' },
+    data: param
+  });
+}
+
+export function getUser() {
+  return fetch({
+    url: '/user/getUser',
+    method: 'get',
+    headers: { loading: 'true' }
+  });
+}
+
+export function saveProfile(data) {
+  const param = {
+    nickName: data.nickName,
+    position: data.position,
+    job: data.job,
+    age: data.age
+  };
+  return fetch({
+    url: '/user/saveProfile',
+    method: 'post',
+    headers: { loading: 'true' },
+    data: param
+  });
+}

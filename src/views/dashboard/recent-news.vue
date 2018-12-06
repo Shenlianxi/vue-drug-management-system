@@ -1,5 +1,9 @@
 <template>
-  <div class="recent-news-wrapper" :style="'width:' + computedWidth">
+  <div  class="recent-news-wrapper"
+        :style="'width:' + computedWidth"
+        v-loading="loading"
+        element-loading-text="加载中"
+        >
     <mini-card
       class="mini-card"
       v-for="item in miniCardData"
@@ -40,7 +44,8 @@ export default {
       allMapData: [],
       dataType: 1,
       typeOption: [],
-      mapChartData: {}
+      mapChartData: {},
+      loading: false
     };
   },
   components: {
@@ -57,6 +62,7 @@ export default {
   },
   methods: {
     initData() {
+      this.loading = true;
       // this.loadMockData();
       const $ts = this;
       getTotal().then(response => {
@@ -80,6 +86,9 @@ export default {
         if (resp.data.success) {
           $ts.allMapData = resp.data.data;
           $ts.handleMap(1);
+          setTimeout(() => {
+            this.loading = false;
+          }, 200);
         } else {
           messageBox.error(resp.data.errorMsg);
         }

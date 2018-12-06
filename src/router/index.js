@@ -71,6 +71,12 @@ export const constantRouterMap = [
     component: defaultLayout,
     hidden: true,
     children: [{ path: '/', component: _import('sales/index') }]
+  },
+  {
+    path: '/personalcenter',
+    component: defaultLayout,
+    hidden: true,
+    children: [{ path: '/', component: _import('personal-center/index') }]
   }
 ];
 export default new Router({

@@ -10,6 +10,8 @@
           border
           height="500"
           :default-sort = "{prop: 'drugId', order: 'descending'}"
+          v-loading="loading"
+          element-loading-text="加载中"
           style="width: 100%">
             <el-table-column
               prop="drugId"
@@ -78,10 +80,12 @@ export default {
   data() {
     return {
       tableData: [],
-      stockNum: 1
+      stockNum: 1,
+      loading: false
     };
   },
   mounted() {
+    this.loading = true;
     this.initData();
   },
   methods: {
@@ -91,6 +95,9 @@ export default {
           this.tableData = response.data.data;
         }
       });
+      setTimeout(() => {
+        this.loading = false;
+      }, 500);
     },
     handleStock(element, type) {
       const data = {};

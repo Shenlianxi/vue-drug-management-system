@@ -39,6 +39,7 @@
           </span>
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item v-if="roleName">{{roleName}}</el-dropdown-item>
+            <el-dropdown-item v-if="roleName" @click.native="personalCenter">个人中心</el-dropdown-item>
             <el-dropdown-item @click.native="logOut">登出</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
@@ -104,6 +105,10 @@ export default {
     goTo() {
       this.$router.push({ path: '/mainpageview' });
       this.leftExsistState = true;
+    },
+    personalCenter() {
+      this.$router.push({ path: '/personalcenter' });
+      this.leftExsistState = false;
     },
     mapper() {
       const mapper = [
