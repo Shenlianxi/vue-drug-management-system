@@ -86,9 +86,7 @@ export default {
         if (resp.data.success) {
           $ts.allMapData = resp.data.data;
           $ts.handleMap(1);
-          setTimeout(() => {
-            this.loading = false;
-          }, 200);
+          this.loading = false;
         } else {
           messageBox.error(resp.data.errorMsg);
         }

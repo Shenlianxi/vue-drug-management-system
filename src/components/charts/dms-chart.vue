@@ -67,9 +67,7 @@ export default {
         this.currentView = getCurrentChart(chartData.chartType);
         this.chartData = chartData;
       }
-      setTimeout(() => {
-        this.loading = false;
-      }, 500);
+      this.loading = false;
     }
   }
 };

@@ -82,8 +82,8 @@ export default {
           if (formData.validateCode.toLowerCase() === this.checkedCode) {
             login(formData).then(response => {
               if (response.data.success) {
-                const tokenData = {};
-                tokenData.token = Math.random().toString(36).substr(2);
+                const tokenData = response.data.data;
+                this.$store.commit('SET_TOKEN', tokenData);
                 setToken(tokenData);
                 this.$router.push({ path: '/mainpageview' });
                 this.$store.commit('SET_STATUS', 'online');
