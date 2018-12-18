@@ -13,7 +13,8 @@ module.exports = {
     proxyTable: {
       port: 8086,
       '/api': {
-        target: 'http://127.0.0.1:8080/dms',
+        target: 'http://127.0.0.1:8000/dms',
+        // target: 'http://47.106.193.74:8000/dms',
         changeOrigin: true,
         pathRewrite: {
             '^/api': ''

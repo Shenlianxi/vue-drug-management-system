@@ -115,7 +115,9 @@ export default {
 .login-container {
     // @include relative;
     height: 100vh;
-    background-color: #2d3a4b;
+    // background-color: #2d3a4b;
+    background-image: url('../../assets/image/login-image/loginbg.png');
+    background-size: cover;
 }
 .login-form {
       position: absolute;

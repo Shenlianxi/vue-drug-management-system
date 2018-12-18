@@ -48,3 +48,33 @@ export function saveProfile(data) {
     data: param
   });
 }
+
+export function addUser(data) {
+  const param = {
+    userName: data.userName,
+    password: md5(data.password),
+    userRole: data.userRole
+  };
+  return fetch({
+    url: '/user/add',
+    method: 'post',
+    headers: { loading: 'true' },
+    data: param
+  });
+}
+
+export function delUser(data) {
+  return fetch({
+    url: '/user/delUser/' + data.userId,
+    method: 'delete',
+    headers: { loading: 'true' }
+  });
+}
+
+export function getUserList() {
+  return fetch({
+    url: '/user/allUser',
+    method: 'get',
+    headers: { loading: 'true' }
+  });
+}
