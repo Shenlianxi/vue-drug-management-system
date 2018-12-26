@@ -1,5 +1,5 @@
 import router from './router';
-// import store from './store';
+import store from './store';
 import nProgress from 'nprogress';
 import 'nprogress/nprogress.css';
 import { getToken, setToken } from '@/utils/auth';
@@ -28,12 +28,18 @@ router.beforeEach((to, from, next) => {
   }
   nProgress.start();
   if (getToken()) {
-    if (to.path === '/login') {
-      next({
-        path: '/'
-      });
+    if (to.path === '/login' || to.path === '/') {
+      next('/login');
     } else {
-      next();
+      if (store.getters.roles.length === 0) {
+        store.dispatch('GetInfo').then(res => {
+          next();
+        }).catch(() => {
+          next('/login');
+        });
+      } else {
+        next();
+      }
     }
   } else {
     if (whiteList.indexOf(to.path) !== -1) {

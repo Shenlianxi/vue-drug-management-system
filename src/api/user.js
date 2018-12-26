@@ -78,3 +78,11 @@ export function getUserList() {
     headers: { loading: 'true' }
   });
 }
+
+export function getPrivInfo() {
+  return fetch({
+    url: '/authority/userPrivlege',
+    method: 'get',
+    headers: { loading: 'true' }
+  });
+}

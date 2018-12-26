@@ -29,7 +29,7 @@
           <el-menu-item index="3-2">库存管理</el-menu-item>
         </el-submenu>
         <el-menu-item index="4">订单管理</el-menu-item>
-        <el-menu-item index="5">分析系统</el-menu-item>
+        <el-menu-item v-has="{code: 'analysis'}" index="5">分析系统</el-menu-item>
       <el-menu-item index="6">报表系统</el-menu-item>
       <el-menu-item index="7">销售系统</el-menu-item>
       <div class="navbar-right">
