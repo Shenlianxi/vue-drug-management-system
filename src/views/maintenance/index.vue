@@ -66,9 +66,9 @@
               border
               style="width: 100%"
               >
-                <el-table-column prop="roleName" label="权限名" width="180">
+                <el-table-column prop="roleName" label="角色名" width="180">
                 </el-table-column>
-                <el-table-column prop="roleDesc" label="权限描述" width="180">
+                <el-table-column prop="roleDesc" label="角色描述" width="180">
                 </el-table-column>
                 <el-table-column prop="creator" label="创建者" width="180">
                 </el-table-column>

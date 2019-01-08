@@ -13,8 +13,8 @@
       <div class="profile-photo" @click="goTo">
         <img style="height:100%; width:100%" src="@/assets/image/gears.png">
       </div>
-      <el-menu-item index="1">数据中心</el-menu-item>
-      <el-menu-item index="2">维护驾驶舱</el-menu-item>
+      <!-- <el-menu-item index="1">数据中心</el-menu-item> -->
+      <el-menu-item index="2" v-has="{code: 'systemManage'}">维护驾驶舱</el-menu-item>
       <!-- <el-submenu index="2">
         <template slot="title"></template> -->
         <!-- <el-menu-item index="2-1">维护列表</el-menu-item> -->
@@ -26,12 +26,12 @@
         <el-submenu index="3">
           <template slot="title">药品管理</template>
           <el-menu-item index="3-1">药品信息维护</el-menu-item>
-          <el-menu-item index="3-2">库存管理</el-menu-item>
+          <el-menu-item index="3-2" v-has="{code: 'instock'}">库存管理</el-menu-item>
         </el-submenu>
-        <el-menu-item index="4">订单管理</el-menu-item>
+        <el-menu-item index="4" v-has="{code: 'orderManage'}">订单管理</el-menu-item>
         <el-menu-item v-has="{code: 'analysis'}" index="5">分析系统</el-menu-item>
-      <el-menu-item index="6">报表系统</el-menu-item>
-      <el-menu-item index="7">销售系统</el-menu-item>
+      <el-menu-item index="6" v-has="{code: 'boardSystem'}">报表系统</el-menu-item>
+      <el-menu-item index="7" v-has="{code: 'saleSystem'}">销售系统</el-menu-item>
       <div class="navbar-right">
         <el-dropdown  trigger="click">
           <span class="el-dropdown-link">
