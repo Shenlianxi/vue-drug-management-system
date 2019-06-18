@@ -7,7 +7,7 @@ export function getTotal() {
     headers: { loading: 'true' }
   });
 }
-// 解放党四级分数
+// 解放党四级分数   djasiojdalks
 
 export function getMaps() {
   return fetch({
