@@ -7,6 +7,7 @@ export function getTotal() {
     headers: { loading: 'true' }
   });
 }
+// 解放党四级分数
 
 export function getMaps() {
   return fetch({
