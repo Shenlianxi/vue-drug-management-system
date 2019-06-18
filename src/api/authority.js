@@ -7,6 +7,7 @@ export function getAllAuthority() {
     headers: { loading: 'true' }
   });
 }
+// eceshi 
 
 export function getRoleAuthority(data) {
   const param = {
